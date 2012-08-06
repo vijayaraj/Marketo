@@ -8,10 +8,10 @@ module Marketo
     attr_accessor :header
     attr_accessor :cookie
 
-    def self.new_marketo_client(access_key, secret_key)
+    def self.new_marketo_client(access_key, secret_key, api_subdomain, api_version )
       @client = Savon::Client.new do
         http.headers["Pragma"] = "no-cache"
-        wsdl.endpoint = "https://na-l.marketo.com/soap/mktows/1_6"
+        wsdl.endpoint = "https://#{api_subdomain}.marketo.com/soap/mktows/#{api_version}"
         wsdl.document = "http://app.marketo.com/soap/mktows/1_4?WSDL"
       end
 
