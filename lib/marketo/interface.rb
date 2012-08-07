@@ -34,6 +34,14 @@ module Marketo
       response = send_request("ns1:paramsGetLead", {:lead_key => lead.to_hash})
       return Lead.from_hash(response[:success_get_lead][:result][:lead_record_list][:lead_record])
     end
+    
+    def get_lead_by_cookie(cookie)
+      raise Exception, "Email must be provided" if email.nil?
+
+      lead = ParamsGetLead.new("COOKIE", cookie)
+      response = send_request("ns1:paramsGetLead", {:lead_key => lead.to_hash})
+      return Lead.from_hash(response[:success_get_lead][:result][:lead_record_list][:lead_record])
+    end
 
     def sync_lead(email, cookie, user_args = {})
       raise Exception, "Email must be provided" if email.nil?
