@@ -36,7 +36,7 @@ module Marketo
     end
     
     def get_lead_by_cookie(cookie)
-      raise Exception, "Email must be provided" if email.nil?
+      raise Exception, "Cookie required" if cookie.nil?
 
       lead = ParamsGetLead.new("COOKIE", cookie)
       response = send_request("ns1:paramsGetLead", {:lead_key => lead.to_hash})
