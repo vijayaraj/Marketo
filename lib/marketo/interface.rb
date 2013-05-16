@@ -93,8 +93,8 @@ module Marketo
     attr_accessor :cookie
     attr_accessor :attributes
 
-    def initialize(cookie, user_args = {})
-      @cookie = cookie
+    def initialize(email, user_args = {})
+      @email = email
 
       @attributes = []
       user_args.each_pair do |name, val|
@@ -104,7 +104,7 @@ module Marketo
 
     def to_hash
       {
-        "Cookie" => @cookie,
+        "Email" => @email,
         :lead_attribute_list => {
           :attribute => @attributes
         }
